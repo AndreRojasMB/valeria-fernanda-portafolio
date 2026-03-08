@@ -1,8 +1,8 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import gavecLogo from "../../assets/BRANDING AREA/Contenido Gavec/logo.png";
-import gavecPortada from "../../assets/BRANDING AREA/Contenido Gavec/portada.png";
+import gavecLogo from "../../assets/BRANDING AREA/2 portadas branding/LogoG.png";
+import gavecPortada from "../../assets/BRANDING AREA/2 portadas branding/GAVEC.png";
 
 /**
  * Auto-carga TODAS las imágenes dentro de:
