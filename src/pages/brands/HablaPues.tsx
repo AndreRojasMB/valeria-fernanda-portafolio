@@ -267,6 +267,28 @@ export default function HablaPues() {
         </section>
 
         <section className="ikeaPlan__bottom">
+                    <motion.aside
+                      className="ikeaPlan__concept"
+                      initial={{ opacity: 0, x: 28 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.25 }}
+                      transition={{ duration: 0.7 }}
+                    >
+                      <h4>CONCEPTO ESTRATÉGICO</h4>
+                      <h2>
+                        EL CRECIMIENTO EMPIEZA EN TU
+                        <br />
+                        ESPACIO
+                      </h2>
+
+                      <h4>ESTRATEGIA GENERAL</h4>
+                      <p>
+                        Posicionar a IKEA como la marca que convierte cada espacio en una
+                        manifestación visible de crecimiento personal, ayudando a los
+                        peruanos a transformar su entorno en reflejo de quiénes son hoy y
+                        hacia dónde avanzan.
+                      </p>
+                    </motion.aside>
           <div className="ikeaPlan__phases">
             {phases.map((phase, index) => (
               <motion.div
@@ -302,28 +324,7 @@ export default function HablaPues() {
             ))}
           </div>
 
-          <motion.aside
-            className="ikeaPlan__concept"
-            initial={{ opacity: 0, x: 28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h4>CONCEPTO ESTRATÉGICO</h4>
-            <h2>
-              EL CRECIMIENTO EMPIEZA EN TU
-              <br />
-              ESPACIO
-            </h2>
 
-            <h4>ESTRATEGIA GENERAL</h4>
-            <p>
-              Posicionar a IKEA como la marca que convierte cada espacio en una
-              manifestación visible de crecimiento personal, ayudando a los
-              peruanos a transformar su entorno en reflejo de quiénes son hoy y
-              hacia dónde avanzan.
-            </p>
-          </motion.aside>
         </section>
       </div>
     </main>

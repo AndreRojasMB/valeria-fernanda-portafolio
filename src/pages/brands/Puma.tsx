@@ -181,9 +181,6 @@ const slides: PumaSlide[] = useMemo(
             >
               <div className="pumaRM__logo">PUMA</div>
               <h1 className="pumaRM__title">Freedom fits better</h1>
-              <p className="pumaRM__lead">
-                Una plataforma visual y estratégica donde pertenecer no significa dejar de ser uno mismo.
-              </p>
             </motion.div>
 
             <div className="pumaRM__heroGrid">

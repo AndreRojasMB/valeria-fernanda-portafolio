@@ -1759,14 +1759,6 @@ html, body, #root {
   animation: pumaTitleGlow 4s ease-in-out infinite;
 }
 
-.pumaRM__lead {
-  max-width: 720px;
-  margin: 0 auto;
-  font-size: clamp(14px, 1.35vw, 18px);
-  line-height: 1.55;
-  opacity: 0.82;
-}
-
 .pumaRM__heroGrid {
   display: grid;
   grid-template-columns: minmax(280px, 1fr) 220px minmax(280px, 1fr);
@@ -2882,9 +2874,6 @@ html, body, #root {
     font-size: clamp(34px, 10vw, 54px);
   }
 
-  .pumaRM__lead {
-    font-size: 14px;
-  }
 
   .pumaExp {
     padding-top: 2vh;
@@ -3451,9 +3440,8 @@ body,
 /* BOTTOM - ESTA ES LA PARTE CORREGIDA */
 .ikeaPlan__bottom {
   display: grid;
-  grid-template-columns: minmax(0, 760px) minmax(0, 360px);
-  justify-content: space-between;
-  column-gap: 150px;
+  grid-template-columns: 360px 160px;
+  column-gap: 200px;
   align-items: start;
 }
 
@@ -3461,6 +3449,7 @@ body,
   display: flex;
   flex-direction: column;
   gap: 58px;
+  margin-right: auto;
 }
 
 .ikeaPlan__phaseRow {
@@ -4071,14 +4060,6 @@ body,
   padding: 14px 18px;
   width: min(82%, 360px);
 }
-.strategic-ikea-sub{
-  display: block;
-  color: rgba(255, 255, 255, 0.96);
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.98rem;
-  line-height: 1.35;
-  font-weight: 600;
-}
 
 .strategic-shade--ikea{
   position: absolute;
@@ -4175,7 +4156,4 @@ body,
     font-size: 1.3rem;
   }
 
-  .strategic-ikea-sub{
-    font-size: 0.9rem;
-  }
 }

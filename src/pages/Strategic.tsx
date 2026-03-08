@@ -59,9 +59,6 @@ export default function Strategic() {
             <img src={ikeaLogo} alt="IKEA" className="strategic-ikea-logo" />
 
             <div className="strategic-ikea-copy">
-              <span className="strategic-ikea-sub">
-                El crecimiento empieza en tu espacio
-              </span>
             </div>
           </div>
 
