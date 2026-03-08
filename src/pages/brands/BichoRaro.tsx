@@ -1,7 +1,7 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import bichoLogo from "../../assets/BRANDING AREA/Contenido bicho raro/logo.png";
+import bichoLogo from "../../assets/BRANDING AREA/Contenido bicho raro/Logo.png";
 import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.png";
 
 /**
