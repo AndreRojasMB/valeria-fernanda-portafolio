@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import syncroImg from "../assets/PLANNING AREA/3 portadas planning/syncro.png";
-import pumaImg from "../assets/PLANNING AREA/3 portadas planning/PUMA.png";
+import pumaImg from "../assets/PLANNING AREA/3 portadas planning/puma.png";
 import ikeaLogo from "../assets/PLANNING AREA/HABLA PUES PLANNING/LOGO.png";
 
 export default function Strategic() {
