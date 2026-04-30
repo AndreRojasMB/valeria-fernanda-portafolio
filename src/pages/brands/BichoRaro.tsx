@@ -1,8 +1,8 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import bichoLogo from "../../assets/BRANDING AREA/Contenido bicho raro/Logo.png";
-import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.png";
+import bichoLogo from "../../assets/BRANDING AREA/Contenido bicho raro/Logo.webp";
+import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.webp";
 
 /**
  * Auto-carga TODAS las imágenes dentro de:
@@ -10,7 +10,7 @@ import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.
  */
 const bichoImages = Object.values(
   import.meta.glob<string>(
-    "../../assets/BRANDING AREA/Contenido bicho raro/*.{png,jpg,jpeg,webp}",
+    "../../assets/BRANDING AREA/Contenido bicho raro/*.webp",
     { eager: true, import: "default" }
   )
 ).sort();
@@ -46,13 +46,14 @@ export default function BichoRaro() {
 
         {/* IZQUIERDA: portada + logo centrado */}
         <div className="bicho-cover">
-          <img className="bicho-cover__img" src={bichoCover} alt="Bicho Raro portada" />
+          <img className="bicho-cover__img" src={bichoCover} alt="Bicho Raro portada" decoding="async" />
           <div className="bicho-cover__shade" />
 
           <motion.img
             className="bicho-cover__logo"
             src={bichoLogo}
             alt="Logo Bicho Raro"
+            decoding="async"
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12 }}
@@ -106,7 +107,7 @@ export default function BichoRaro() {
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.25) }}
           >
-            <img src={src} alt={`Bicho Raro ${i + 1}`} loading="lazy" />
+            <img src={src} alt={`Bicho Raro ${i + 1}`} loading="lazy" decoding="async" />
             <div className="bicho-scanline" />
           </motion.figure>
         ))}

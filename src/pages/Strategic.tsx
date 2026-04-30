@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import syncroImg from "../assets/PLANNING AREA/3 portadas planning/syncro.png";
-import pumaImg from "../assets/PLANNING AREA/3 portadas planning/puma.png";
-import ikeaLogo from "../assets/PLANNING AREA/HABLA PUES PLANNING/LOGO.png";
+import syncroImg from "../assets/PLANNING AREA/3 portadas planning/syncro.webp";
+import pumaImg from "../assets/PLANNING AREA/3 portadas planning/puma.webp";
+import ikeaLogo from "../assets/PLANNING AREA/HABLA PUES PLANNING/LOGO.webp";
 
 export default function Strategic() {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ export default function Strategic() {
           transition={{ duration: 0.85, delay: 0.08 }}
           whileHover={{ scale: 1.02 }}
         >
-          <img src={syncroImg} alt="SYNCRO" />
+          <img src={syncroImg} alt="SYNCRO" decoding="async" />
           <div className="strategic-shade" />
           <div className="strategic-label label-syncro">
             <div className="label-box">
@@ -56,7 +56,7 @@ export default function Strategic() {
           <div className="strategic-ikea-glow strategic-ikea-glow--3" />
 
           <div className="strategic-ikea-inner">
-            <img src={ikeaLogo} alt="IKEA" className="strategic-ikea-logo" />
+            <img src={ikeaLogo} alt="IKEA" className="strategic-ikea-logo" decoding="async" />
 
             <div className="strategic-ikea-copy">
             </div>
@@ -74,7 +74,7 @@ export default function Strategic() {
           transition={{ duration: 0.85, delay: 0.24 }}
           whileHover={{ scale: 1.02 }}
         >
-          <img src={pumaImg} alt="PUMA" />
+          <img src={pumaImg} alt="PUMA" decoding="async" />
           <div className="strategic-shade" />
           <div className="strategic-label label-puma">
             <div className="label-box">

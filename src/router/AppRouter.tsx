@@ -1,26 +1,34 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Branding from "../pages/Branding";
-import Strategic from "../pages/Strategic";
-import Gavec from "../pages/brands/Gavec";
-import BichoRaro from "../pages/brands/BichoRaro";
-import Syncro from "../pages/brands/Syncro";
-import HablaPues from "../pages/brands/HablaPues";
-import Puma from "../pages/brands/Puma";
+
+const Home = lazy(() => import("../pages/Home"));
+const Branding = lazy(() => import("../pages/Branding"));
+const Strategic = lazy(() => import("../pages/Strategic"));
+const Gavec = lazy(() => import("../pages/brands/Gavec"));
+const BichoRaro = lazy(() => import("../pages/brands/BichoRaro"));
+const Syncro = lazy(() => import("../pages/brands/Syncro"));
+const HablaPues = lazy(() => import("../pages/brands/HablaPues"));
+const Puma = lazy(() => import("../pages/brands/Puma"));
+
+function RouteFallback() {
+  return <div className="route-loading" aria-label="Cargando" />;
+}
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/branding" element={<Branding />} />
-        <Route path="/strategic" element={<Strategic />} />
-        <Route path="/branding/gavec" element={<Gavec />} />        
-        <Route path="/branding/bichoraro" element={<BichoRaro />} />
-        <Route path="/strategic/syncro" element={<Syncro />} />
-        <Route path="/strategic/habla-pues" element={<HablaPues />} />
-        <Route path="/strategic/puma" element={<Puma />} />
-      </Routes>
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/branding" element={<Branding />} />
+          <Route path="/strategic" element={<Strategic />} />
+          <Route path="/branding/gavec" element={<Gavec />} />
+          <Route path="/branding/bichoraro" element={<BichoRaro />} />
+          <Route path="/strategic/syncro" element={<Syncro />} />
+          <Route path="/strategic/habla-pues" element={<HablaPues />} />
+          <Route path="/strategic/puma" element={<Puma />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

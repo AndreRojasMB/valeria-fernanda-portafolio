@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@400;700&family=Anton&display=swap');
+
 /* RESET */
 * {
   margin: 0;
@@ -11,6 +13,11 @@ html, body, #root {
   overflow-x: hidden;
   background: #0e0e0e;
   scroll-behavior: smooth;
+}
+
+.route-loading {
+  min-height: 100dvh;
+  background: #0e0e0e;
 }
 
 /* VARIABLES */
@@ -35,7 +42,6 @@ html, body, #root {
   font-family: 'Puma';
   src: url('../fonts/MYPUMA__.ttf') format('truetype');
 }
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Nunito:wght@400;700&family=Anton&display=swap');
 
 /* UTILIDADES */
 
@@ -354,6 +360,12 @@ html, body, #root {
   position: relative;
   font-size: clamp(56px, 6vw, 96px);
   margin-bottom: 60px;
+}
+
+.category-back {
+  display: block;
+  width: fit-content;
+  margin: 36px 0 0;
 }
 
 .brand-grid {
@@ -3957,7 +3969,7 @@ body,
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(135deg, #0058a3 0%, #045196 38%, #03477f 68%, #023d70 100%);
+  background: #0055a3;
 }
 
 .strategic-tile--ikea > img{
@@ -3974,19 +3986,14 @@ body,
 
 .strategic-ikea-bg{
   z-index: 0;
-  background:
-    radial-gradient(circle at 16% 18%, rgba(255, 221, 0, 0.16), transparent 0 18%),
-    radial-gradient(circle at 84% 18%, rgba(255, 255, 255, 0.12), transparent 0 18%),
-    radial-gradient(circle at 78% 78%, rgba(255, 221, 0, 0.10), transparent 0 20%),
-    radial-gradient(circle at 28% 82%, rgba(255, 255, 255, 0.08), transparent 0 18%),
-    linear-gradient(135deg, #0058a3 0%, #045196 38%, #03477f 68%, #023d70 100%);
-  filter: blur(10px) saturate(115%);
-  animation: strategicIkeaBgShift 18s ease-in-out infinite alternate;
+  background: #0055a3;
+  filter: none;
+  animation: none;
 }
 
 .strategic-ikea-grid{
   z-index: 0;
-  opacity: 0.14;
+  opacity: 0;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
@@ -3998,7 +4005,7 @@ body,
   z-index: 0;
   border-radius: 999px;
   filter: blur(70px);
-  opacity: 0.48;
+  opacity: 0;
 }
 
 .strategic-ikea-glow--1{
@@ -4040,12 +4047,12 @@ body,
 }
 
 .strategic-ikea-logo{
-  width: min(76%, 320px);
+  width: min(68%, 320px);
   max-width: 320px;
   height: auto;
   object-fit: contain;
   display: block;
-  margin-bottom: 4px;
+  margin: 0;
 }
 
 .strategic-ikea-copy{
@@ -4142,9 +4149,8 @@ body,
 
 @media (max-width: 768px){
   .strategic-ikea-logo{
-    width: min(82%, 260px);
+    width: min(76%, 260px);
     max-width: 260px;
-    margin-bottom: 18px;
   }
 
   .strategic-ikea-copy{

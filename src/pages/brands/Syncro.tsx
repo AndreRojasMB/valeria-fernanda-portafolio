@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const syncroImages = Object.values(
   import.meta.glob<string>(
-    "../../assets/PLANNING AREA/SYNCRO PLANNING/*.{png,jpg,jpeg,webp}",
+    "../../assets/PLANNING AREA/SYNCRO PLANNING/*.webp",
     { eager: true, import: "default" }
   )
 ).sort();
@@ -75,6 +75,8 @@ export default function Syncro() {
             className="case-fullimg"
             src={heroImg}
             alt="Syncro reference"
+            loading="lazy"
+            decoding="async"
             initial={{ opacity: 0, scale: 1.03 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -99,7 +101,7 @@ export default function Syncro() {
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.24) }}
             >
-              <img src={src} alt={`Syncro ${i + 2}`} loading="lazy" />
+              <img src={src} alt={`Syncro ${i + 2}`} loading="lazy" decoding="async" />
             </motion.figure>
           ))}
         </section>

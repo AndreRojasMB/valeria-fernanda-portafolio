@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Studies() {
   return (
@@ -125,7 +125,7 @@ function StudyItem({
       initial={{ opacity: 0, y: fromY }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.85, ease: ease as any, delay }}
+      transition={{ duration: 0.85, ease, delay }}
     >
       <div className="study-left">
         <div className="study-num">{n}</div>

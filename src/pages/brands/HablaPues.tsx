@@ -1,6 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/PLANNING AREA/HABLA PUES PLANNING/LOGO.png";
+import logo from "../../assets/PLANNING AREA/HABLA PUES PLANNING/LOGO.webp";
 
 const findings = [
   {
@@ -130,7 +130,7 @@ export default function HablaPues() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
           >
-            <img src={logo} alt="IKEA" className="ikeaPlan__logo" />
+            <img src={logo} alt="IKEA" className="ikeaPlan__logo" loading="lazy" decoding="async" />
           </motion.div>
         </section>
 

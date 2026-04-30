@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { waLink } from "../utils/whatsapp";
-import linkedinIcon from "../assets/icons/linkedin.png"; // ✅ crea esta ruta o ajusta al ícono que tengas
+import linkedinIcon from "../assets/icons/linkedin.webp"; // ✅ crea esta ruta o ajusta al ícono que tengas
 
 export default function ThanksFooter() {
   const WHATS_MSG =
@@ -57,7 +57,7 @@ export default function ThanksFooter() {
           transition={{ duration: 0.7, delay: 0.25 }}
           aria-label="LinkedIn"
         >
-          <img src={linkedinIcon} alt="LinkedIn" />
+          <img src={linkedinIcon} alt="LinkedIn" loading="lazy" decoding="async" />
         </motion.a>
 
         {/* CTA mini (opcional) */}

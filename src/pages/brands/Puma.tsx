@@ -1,33 +1,33 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useScroll, useSpring, useTransform } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import SPOT_IMGS from "../../assets/PLANNING AREA/PUMA PLANNING/SPOT IMAGENES.png";
-import STORIES_PUMA from "../../assets/PLANNING AREA/PUMA PLANNING/STORIES PUMA.png";
-import LOGOS_SPOT from "../../assets/PLANNING AREA/PUMA PLANNING/LOGOS SPOT.png";
+import SPOT_IMGS from "../../assets/PLANNING AREA/PUMA PLANNING/SPOT IMAGENES.webp";
+import STORIES_PUMA from "../../assets/PLANNING AREA/PUMA PLANNING/STORIES PUMA.webp";
+import LOGOS_SPOT from "../../assets/PLANNING AREA/PUMA PLANNING/LOGOS SPOT.webp";
 
-import OOH_1 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-1.png";
-import OOH_2 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-2.png";
-import OOH_3 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-3.png";
-import OOH_4 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-4.png";
-import OOH_6 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-6.png";
+import OOH_1 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-1.webp";
+import OOH_2 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-2.webp";
+import OOH_3 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-3.webp";
+import OOH_4 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-4.webp";
+import OOH_6 from "../../assets/PLANNING AREA/PUMA PLANNING/OOH-6.webp";
 
-import PR_1 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-1.png";
-import PR_2 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-2.png";
-import PR_3 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-3.png";
-import PR_4 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-4.png";
-import PR_5 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-5.png";
+import PR_1 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-1.webp";
+import PR_2 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-2.webp";
+import PR_3 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-3.webp";
+import PR_4 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-4.webp";
+import PR_5 from "../../assets/PLANNING AREA/PUMA PLANNING/PR-5.webp";
 
-import TM_1 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-1.png";
-import TM_2 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-2.png";
-import TM_3 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-3.png";
-import TM_4 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-4.png";
-import TM_5 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-5.png";
-import TM_6 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-6.png";
-import TM_7 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-7.png";
-import TM_8 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-8.png";
-import TM_9 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-9.png";
-import TM_10 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-10.png";
+import TM_1 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-1.webp";
+import TM_2 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-2.webp";
+import TM_3 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-3.webp";
+import TM_4 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-4.webp";
+import TM_5 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-5.webp";
+import TM_6 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-6.webp";
+import TM_7 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-7.webp";
+import TM_8 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-8.webp";
+import TM_9 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-9.webp";
+import TM_10 from "../../assets/PLANNING AREA/PUMA PLANNING/TM-10.webp";
 
 
 type Cursor = { x: number; y: number };
@@ -269,26 +269,26 @@ function PumaExperience({
 
   const activeSlide = slides[current];
 
-    const goNext = () => {
+    const goNext = useCallback(() => {
       if (isAnimating) return;
       setIsAnimating(true);
       setDirection("next");
       setCurrent((prev) => (prev + 1) % slides.length);
-    };
+    }, [isAnimating, slides.length]);
 
-    const goPrev = () => {
+    const goPrev = useCallback(() => {
       if (isAnimating) return;
       setIsAnimating(true);
       setDirection("prev");
       setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    }, [isAnimating, slides.length]);
 
-    const goToSlide = (targetIndex: number) => {
+    const goToSlide = useCallback((targetIndex: number) => {
       if (targetIndex === current || isAnimating) return;
       setIsAnimating(true);
       setDirection(targetIndex > current ? "next" : "prev");
       setCurrent(targetIndex);
-    };
+    }, [current, isAnimating]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -298,7 +298,7 @@ function PumaExperience({
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [slides.length]);
+  }, [goNext, goPrev]);
 
   useEffect(() => {
     if (paused || isAnimating) return;
@@ -310,7 +310,7 @@ function PumaExperience({
     }, 15000);
 
     return () => window.clearInterval(id);
-  }, [paused, isAnimating, current, slides.length]);
+  }, [paused, isAnimating, slides.length]);
 
     useEffect(() => {
       if (!isAnimating) return;
@@ -507,21 +507,21 @@ function SpotExpanded({ images }: { images: string[] }) {
     <div className="spotRX">
       <div className="spotRX__band">
         <div className="spotRX__track">
-          <img src={top} alt="Spot superior" />
-          <img src={top} alt="Spot superior duplicado" />
-          <img src={top} alt="Spot superior duplicado 2" />
+          <img src={top} alt="Spot superior" loading="lazy" decoding="async" />
+          <img src={top} alt="Spot superior duplicado" loading="lazy" decoding="async" />
+          <img src={top} alt="Spot superior duplicado 2" loading="lazy" decoding="async" />
         </div>
       </div>
 
       <div className="spotRX__center">
-        <img src={LOGOS_SPOT} alt="Logos Spot" />
+        <img src={LOGOS_SPOT} alt="Logos Spot" loading="lazy" decoding="async" />
       </div>
 
       <div className="spotRX__band">
         <div className="spotRX__track spotRX__track--reverse">
-          <img src={bottom} alt="Spot inferior" />
-          <img src={bottom} alt="Spot inferior duplicado" />
-          <img src={bottom} alt="Spot inferior duplicado 2" />
+          <img src={bottom} alt="Spot inferior" loading="lazy" decoding="async" />
+          <img src={bottom} alt="Spot inferior duplicado" loading="lazy" decoding="async" />
+          <img src={bottom} alt="Spot inferior duplicado 2" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -538,23 +538,23 @@ function OOHExpanded({ images }: { images: string[] }) {
   return (
     <div className="oohRX">
       <motion.div className="oohRX__item oohRX__item--board">
-        <img src={boardLeft} alt="OOH 6" />
+        <img src={boardLeft} alt="OOH 6" loading="lazy" decoding="async" />
       </motion.div>
 
       <motion.div className="oohRX__item oohRX__item--mupi">
-        <img src={mupi} alt="OOH 1" />
+        <img src={mupi} alt="OOH 1" loading="lazy" decoding="async" />
       </motion.div>
 
       <motion.div className="oohRX__item oohRX__item--wideLeft">
-        <img src={wideLeft} alt="OOH 2" />
+        <img src={wideLeft} alt="OOH 2" loading="lazy" decoding="async" />
       </motion.div>
 
       <motion.div className="oohRX__item oohRX__item--wideRight">
-        <img src={wideRight} alt="OOH 3" />
+        <img src={wideRight} alt="OOH 3" loading="lazy" decoding="async" />
       </motion.div>
 
       <motion.div className="oohRX__item oohRX__item--map">
-        <img src={map} alt="OOH 5 mapa" />
+        <img src={map} alt="OOH 5 mapa" loading="lazy" decoding="async" />
       </motion.div>
     </div>
   );
@@ -568,7 +568,7 @@ function StoriesExpanded({ images }: { images: string[] }) {
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.8, delay: 0.08 }}
     >
-      <img src={images[0]} alt="Stories Puma" />
+      <img src={images[0]} alt="Stories Puma" loading="lazy" decoding="async" />
     </motion.div>
   );
 }
@@ -614,10 +614,10 @@ function PRExpanded({ images }: { images: string[] }) {
         <div className="prRX__phase1">
           <div className="prRX__phase1Thumbs">
             <div className="prRX__tvThumb">
-              <img src={yoSoy} alt="Yo Soy" />
+              <img src={yoSoy} alt="Yo Soy" loading="lazy" decoding="async" />
             </div>
             <div className="prRX__tvThumb">
-              <img src={todoGood} alt="Todo Good" />
+              <img src={todoGood} alt="Todo Good" loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -636,7 +636,7 @@ function PRExpanded({ images }: { images: string[] }) {
           </div>
 
           <div className="prRX__coffeeVisual">
-            <img src={coffeeImg} alt="Coffee activación" />
+            <img src={coffeeImg} alt="Coffee activación" loading="lazy" decoding="async" />
           </div>
         </div>
 
@@ -649,10 +649,10 @@ function PRExpanded({ images }: { images: string[] }) {
 
           <div className="prRX__mediaGroup">
             <div className="prRX__mediaCard">
-              <img src={media1} alt="Medio 1" />
+              <img src={media1} alt="Medio 1" loading="lazy" decoding="async" />
             </div>
             <div className="prRX__mediaCard">
-              <img src={media2} alt="Medio 2" />
+              <img src={media2} alt="Medio 2" loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -699,7 +699,7 @@ function TradeExpanded({ images }: { images: string[] }) {
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.45, delay: 0.04 * i }}
             >
-              <img src={src} alt={`Tiendas propias ${i + 1}`} />
+              <img src={src} alt={`Tiendas propias ${i + 1}`} loading="lazy" decoding="async" />
             </motion.div>
           ))}
         </div>
@@ -716,7 +716,7 @@ function TradeExpanded({ images }: { images: string[] }) {
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.45, delay: 0.04 * (i + 4) }}
             >
-              <img src={src} alt={`Tiendas por departamento ${i + 1}`} />
+              <img src={src} alt={`Tiendas por departamento ${i + 1}`} loading="lazy" decoding="async" />
             </motion.div>
           ))}
         </div>
@@ -733,7 +733,7 @@ function TradeExpanded({ images }: { images: string[] }) {
               animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 0.45, delay: 0.04 * (i + 8) }}
             >
-              <img src={src} alt={`Ecommerce ${i + 1}`} />
+              <img src={src} alt={`Ecommerce ${i + 1}`} loading="lazy" decoding="async" />
             </motion.div>
           ))}
         </div>

@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import portada from "../assets/portada/portada.png";
+import portada from "../assets/portada/portada.webp";
 
 export default function Hero() {
   return (
     <section className="hero" id="top">
-      <img src={portada} className="hero-bg" alt="Portada" />
+      <img src={portada} className="hero-bg" alt="Portada" decoding="async" fetchPriority="high" />
       <div className="hero-shade" />
 
       <div className="hero-inner">

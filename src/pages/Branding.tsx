@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import gavecBanner from "../assets/BRANDING AREA/2 portadas branding/GAVEC.png";
-import bichoBanner from "../assets/BRANDING AREA/2 portadas branding/BICHO RARO.png";
-import logoG from "../assets/BRANDING AREA/2 portadas branding/LogoG.png";
-import logoBR from "../assets/BRANDING AREA/2 portadas branding/LogoBR.png";
+import gavecBanner from "../assets/BRANDING AREA/2 portadas branding/GAVEC.webp";
+import bichoBanner from "../assets/BRANDING AREA/2 portadas branding/BICHO RARO.webp";
+import logoG from "../assets/BRANDING AREA/2 portadas branding/LogoG.webp";
+import logoBR from "../assets/BRANDING AREA/2 portadas branding/LogoBR.webp";
 
 export default function Branding() {
   const navigate = useNavigate();
@@ -32,10 +32,10 @@ export default function Branding() {
           transition={{ duration: 0.9, delay: 0.15 }}
           whileHover={{ scale: 1.03 }}
         >
-          <img src={gavecBanner} alt="GAVEC" />
+          <img src={gavecBanner} alt="GAVEC" decoding="async" />
           <div className="brand-glow" />
             <div className="brand-logo-center">
-                <img src={logoG} alt="Logo GAVEC" />
+                <img src={logoG} alt="Logo GAVEC" decoding="async" />
             </div>
           <div className="brand-label">
             <span>GAVEC</span>
@@ -51,16 +51,20 @@ export default function Branding() {
           transition={{ duration: 0.9, delay: 0.28 }}
           whileHover={{ scale: 1.03 }}
         >
-          <img src={bichoBanner} alt="Bicho Raro" />
+          <img src={bichoBanner} alt="Bicho Raro" decoding="async" />
           <div className="brand-glow" />
             <div className="brand-logo-center">
-                <img src={logoBR} alt="Logo Bicho Raro" className="logo-br" />
+                <img src={logoBR} alt="Logo Bicho Raro" className="logo-br" decoding="async" />
             </div>
           <div className="brand-label">
             <span>BICHO RARO</span>
           </div>
         </motion.button>
       </div>
+
+      <button className="strategic-back category-back" onClick={() => navigate("/")}>
+        ← Volver al Home
+      </button>
     </main>
   );
 }

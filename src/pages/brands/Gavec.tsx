@@ -1,8 +1,8 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import gavecLogo from "../../assets/BRANDING AREA/2 portadas branding/LogoG.png";
-import gavecPortada from "../../assets/BRANDING AREA/2 portadas branding/GAVEC.png";
+import gavecLogo from "../../assets/BRANDING AREA/2 portadas branding/LogoG.webp";
+import gavecPortada from "../../assets/BRANDING AREA/2 portadas branding/GAVEC.webp";
 
 /**
  * Auto-carga TODAS las imágenes dentro de:
@@ -10,7 +10,7 @@ import gavecPortada from "../../assets/BRANDING AREA/2 portadas branding/GAVEC.p
  */
 const gavecImages = Object.values(
   import.meta.glob<string>(
-    "../../assets/BRANDING AREA/Contenido Gavec/*.{png,jpg,jpeg,webp}",
+    "../../assets/BRANDING AREA/Contenido Gavec/*.webp",
     { eager: true, import: "default" }
   )
 ).sort();
@@ -44,13 +44,14 @@ export default function Gavec() {
       {/* ✅ HERO: PORTADA EXACTA + LOGO centrado + textos derecha */}
       <section className="gavec-hero">
         <div className="gavec-cover">
-          <img className="gavec-cover__img" src={gavecPortada} alt="GAVEC portada" />
+          <img className="gavec-cover__img" src={gavecPortada} alt="GAVEC portada" decoding="async" />
           <div className="gavec-cover__shade" />
 
           <motion.img
             className="gavec-cover__logo"
             src={gavecLogo}
             alt="Logo GAVEC"
+            decoding="async"
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12 }}
@@ -102,7 +103,7 @@ export default function Gavec() {
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.9, delay: Math.min(i * 0.06, 0.25) }}
           >
-            <img src={src} alt={`GAVEC ${i + 1}`} loading="lazy" />
+            <img src={src} alt={`GAVEC ${i + 1}`} loading="lazy" decoding="async" />
           </motion.figure>
         ))}
       </section>
