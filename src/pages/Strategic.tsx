@@ -11,8 +11,8 @@ export default function Strategic() {
   const shouldReduceMotion = useReducedMotion();
   const { language } = useLanguage();
   const copy = language === "es"
-    ? { title: "Proyectos Estratégicos", back: "← Volver al inicio", open: "Abrir proyecto" }
-    : { title: "Strategic Projects", back: "← Back to home", open: "Open project" };
+    ? { title: "Proyectos Estratégicos", back: "← Volver a proyectos", open: "Abrir proyecto" }
+    : { title: "Strategic Projects", back: "← Back to projects", open: "Open project" };
 
   return (
     <main className="strategic-page">
@@ -31,7 +31,7 @@ export default function Strategic() {
           <img src={pumaImg} alt="PUMA" decoding="async" /><div className="strategic-shade" /><div className="strategic-label label-puma"><div className="label-box"><strong className="main">PUMA</strong><span className="sub">Freedom fits better</span></div></div>
         </motion.button>
       </div>
-      <button className="strategic-back" onClick={() => navigate("/")}>{copy.back}</button>
+      <button className="strategic-back" onClick={() => navigate("/#proyectos")}>{copy.back}</button>
     </main>
   );
 }

@@ -12,8 +12,8 @@ export default function Branding() {
   const shouldReduceMotion = useReducedMotion();
   const { language } = useLanguage();
   const copy = language === "es"
-    ? { title: "Proyectos de Branding", back: "← Volver al inicio", open: "Abrir proyecto" }
-    : { title: "Branding Projects", back: "← Back to home", open: "Open project" };
+    ? { title: "Proyectos de Branding", back: "← Volver a proyectos", open: "Abrir proyecto" }
+    : { title: "Branding Projects", back: "← Back to projects", open: "Open project" };
 
   return (
     <main className="category-page">
@@ -36,7 +36,7 @@ export default function Branding() {
           <div className="brand-label"><span>BICHO RARO</span></div>
         </motion.button>
       </div>
-      <button className="strategic-back category-back" onClick={() => navigate("/")}>{copy.back}</button>
+      <button className="strategic-back category-back" onClick={() => navigate("/#proyectos")}>{copy.back}</button>
     </main>
   );
 }
