@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import portada from "../assets/portada/portada.webp";
+import { useLanguage } from "../i18n/useLanguage";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
+  const { language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [titleFontReady, setTitleFontReady] = useState(false);
 
@@ -30,7 +32,13 @@ export default function Hero() {
 
   return (
     <section className="hero" id="top">
-      <img src={portada} className="hero-bg" alt="Portada" decoding="async" fetchPriority="high" />
+      <img
+        src={portada}
+        className="hero-bg"
+        alt={language === "es" ? "Portada" : "Portfolio cover"}
+        decoding="async"
+        fetchPriority="high"
+      />
       <div className="hero-shade" />
 
       <div className="hero-inner">
@@ -44,7 +52,7 @@ export default function Hero() {
           }
           transition={{ duration: shouldReduceMotion ? 0 : 0.62, ease }}
         >
-          Bienvenidos
+          {language === "es" ? "Bienvenidos" : "Welcome"}
         </motion.h1>
 
         <motion.p
@@ -53,9 +61,19 @@ export default function Hero() {
           animate={titleFontReady ? { opacity: 1, y: 0 } : { opacity: 0, y: shouldReduceMotion ? 0 : 14 }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.52, delay: shouldReduceMotion ? 0 : 0.16, ease }}
         >
-          Soy <b>Valeria Torres</b> y me interesa entender el <b>porqué</b> antes de pensar el <b>cómo</b>.
-          Me muevo entre la estrategia de marca y la planificación, ayudando a que las ideas tengan{" "}
-          <b>dirección</b> y <b>sentido</b>.
+          {language === "es" ? (
+            <>
+              Soy <b>Valeria Torres</b> y me interesa entender el <b>porqué</b> antes de pensar el <b>cómo</b>.
+              Me muevo entre la estrategia de marca y la planificación, ayudando a que las ideas tengan{" "}
+              <b>dirección</b> y <b>sentido</b>.
+            </>
+          ) : (
+            <>
+              I’m <b>Valeria Torres</b>, and I believe in understanding the <b>why</b> before thinking about the{" "}
+              <b>how</b>. I work across brand strategy and planning, helping ideas find <b>direction</b> and{" "}
+              <b>meaning</b>.
+            </>
+          )}
         </motion.p>
       </div>
     </section>

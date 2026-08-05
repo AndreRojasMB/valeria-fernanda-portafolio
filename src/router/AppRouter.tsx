@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useLanguage } from "../i18n/useLanguage";
 
 const Home = lazy(() => import("../pages/Home"));
 const Branding = lazy(() => import("../pages/Branding"));
@@ -11,7 +12,8 @@ const HablaPues = lazy(() => import("../pages/brands/HablaPues"));
 const Puma = lazy(() => import("../pages/brands/Puma"));
 
 function RouteFallback() {
-  return <div className="route-loading" aria-label="Cargando" />;
+  const { language } = useLanguage();
+  return <div className="route-loading" aria-label={language === "es" ? "Cargando" : "Loading"} />;
 }
 
 export default function AppRouter() {

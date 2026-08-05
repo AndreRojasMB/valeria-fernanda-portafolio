@@ -3,6 +3,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import brandingVideo from "../assets/videos/branding.mp4";
 import strategicVideo from "../assets/videos/strategic.mp4";
+import { useLanguage } from "../i18n/useLanguage";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -13,12 +14,7 @@ const gridVariants: Variants = {
 
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 38, scale: 0.985 },
-  show: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.52, ease },
-  },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.52, ease } },
 };
 
 type ProjectVideoCardProps = {
@@ -26,9 +22,10 @@ type ProjectVideoCardProps = {
   videoSrc: string;
   onClick: () => void;
   shouldReduceMotion: boolean | null;
+  openLabel: string;
 };
 
-function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion }: ProjectVideoCardProps) {
+function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion, openLabel }: ProjectVideoCardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const videoInitialized = useRef(false);
@@ -47,15 +44,12 @@ function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion }: Proj
       },
       { rootMargin: "240px 0px" }
     );
-
-    const playbackObserver = new IntersectionObserver(
-      ([entry]) => setIsVideoActive(entry.isIntersecting),
-      { threshold: 0.08 }
-    );
+    const playbackObserver = new IntersectionObserver(([entry]) => setIsVideoActive(entry.isIntersecting), {
+      threshold: 0.08,
+    });
 
     preloadObserver.observe(card);
     playbackObserver.observe(card);
-
     return () => {
       preloadObserver.disconnect();
       playbackObserver.disconnect();
@@ -71,11 +65,8 @@ function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion }: Proj
       videoInitialized.current = true;
     }
 
-    if (isVideoActive) {
-      void video.play().catch(() => undefined);
-    } else {
-      video.pause();
-    }
+    if (isVideoActive) void video.play().catch(() => undefined);
+    else video.pause();
   }, [isVideoActive, shouldLoadVideo]);
 
   return (
@@ -93,7 +84,7 @@ function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion }: Proj
         event.preventDefault();
         onClick();
       }}
-      aria-label={`Abrir ${title}`}
+      aria-label={`${openLabel} ${title}`}
     >
       <video ref={videoRef} className="video-el" loop muted playsInline preload="none" aria-hidden="true">
         {shouldLoadVideo && <source src={videoSrc} type="video/mp4" />}
@@ -106,43 +97,23 @@ function ProjectVideoCard({ title, videoSrc, onClick, shouldReduceMotion }: Proj
 }
 
 export default function ProjectsHome() {
+  const { language } = useLanguage();
   const navigate = useNavigate();
   const shouldReduceMotion = useReducedMotion();
+  const copy =
+    language === "es"
+      ? { title: "Proyectos", branding: "Proyectos de Branding", strategic: "Proyectos Estratégicos", open: "Abrir" }
+      : { title: "Projects", branding: "Branding Projects", strategic: "Strategic Projects", open: "Open" };
 
   return (
     <section id="proyectos" className="projects section">
       <div className="projects-bg" />
-
-      <motion.h2
-        className="title-best projects-title"
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 34 }}
-        whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.58, ease }}
-      >
-        Proyectos
+      <motion.h2 className="title-best projects-title" initial={shouldReduceMotion ? false : { opacity: 0, y: 34 }} whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.58, ease }}>
+        {copy.title}
       </motion.h2>
-
-      <motion.div
-        className="video-grid"
-        variants={gridVariants}
-        initial={shouldReduceMotion ? false : "hidden"}
-        whileInView={shouldReduceMotion ? undefined : "show"}
-        viewport={{ once: true, amount: 0.12, margin: "0px 0px -6% 0px" }}
-      >
-        <ProjectVideoCard
-          title="Branding Projects"
-          videoSrc={brandingVideo}
-          onClick={() => navigate("/branding")}
-          shouldReduceMotion={shouldReduceMotion}
-        />
-
-        <ProjectVideoCard
-          title="Strategic Projects"
-          videoSrc={strategicVideo}
-          onClick={() => navigate("/strategic")}
-          shouldReduceMotion={shouldReduceMotion}
-        />
+      <motion.div className="video-grid" variants={gridVariants} initial={shouldReduceMotion ? false : "hidden"} whileInView={shouldReduceMotion ? undefined : "show"} viewport={{ once: true, amount: 0.12, margin: "0px 0px -6% 0px" }}>
+        <ProjectVideoCard title={copy.branding} videoSrc={brandingVideo} onClick={() => navigate("/branding")} shouldReduceMotion={shouldReduceMotion} openLabel={copy.open} />
+        <ProjectVideoCard title={copy.strategic} videoSrc={strategicVideo} onClick={() => navigate("/strategic")} shouldReduceMotion={shouldReduceMotion} openLabel={copy.open} />
       </motion.div>
     </section>
   );

@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Local image-generation source files; the optimized WebP variants are committed.
+src/assets/localized/en/*.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
