@@ -7,7 +7,7 @@ import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.
 import bichoPostEn from "../../assets/localized/en/bicho-post.webp";
 import bichoPosterEn from "../../assets/localized/en/bicho-poster.webp";
 
-const hiddenGalleryImages = ["letrero largo bicho.webp", "post_ig1.webp"];
+const hiddenGalleryImages = ["letrero largo bicho.webp", "post_ig1.webp", "post_ig2.webp"];
 const bichoImages = Object.entries(import.meta.glob<string>("../../assets/BRANDING AREA/Contenido bicho raro/*.webp", { eager: true, import: "default" }))
   .filter(([path]) => !hiddenGalleryImages.some((name) => path.endsWith(name)))
   .sort(([pathA], [pathB]) => pathA.localeCompare(pathB));
