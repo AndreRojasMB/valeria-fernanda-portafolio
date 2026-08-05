@@ -12,7 +12,7 @@ const studiesByLanguage = {
     { year: "2025", title: "Brother Lima Escuela de Creativos", subtitle: "Dirección de Arte" },
     { year: "2026", title: "Santander Open Academy", subtitle: "Introducción al comportamiento del consumidor" },
     { year: "2026", title: "La Calle Escuela Creativa", subtitle: "Planning y Estrategia" },
-    { year: "2026", title: "Pacífico Business School", subtitle: "Behavioral Design", location: "Lima, Perú" },
+    { year: "2026", title: "Pacífico Business School", subtitle: "Behavioral Design" },
   ],
   en: [
     { year: "2019 – 2025", title: "Bachelor’s Degree in Communication Sciences with a specialization in Advertising", subtitle: "University Studies" },
@@ -20,7 +20,7 @@ const studiesByLanguage = {
     { year: "2025", title: "Brother Lima School of Creatives", subtitle: "Art Direction" },
     { year: "2026", title: "Santander Open Academy", subtitle: "Introduction to Consumer Behavior" },
     { year: "2026", title: "La Calle Creative School", subtitle: "Planning and Strategy" },
-    { year: "2026", title: "Pacífico Business School", subtitle: "Behavioral Design", location: "Lima, Peru" },
+    { year: "2026", title: "Pacífico Business School", subtitle: "Behavioral Design" },
   ],
 } satisfies Record<"es" | "en", readonly Study[]>;
 
