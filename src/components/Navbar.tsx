@@ -12,10 +12,25 @@ export default function Navbar() {
   const [active, setActive] = useState<string>("estudios");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30); // ✅ quité la "a" suelta
-    onScroll();
+    let animationFrame = 0;
+
+    const updateScrolledState = () => {
+      animationFrame = 0;
+      const nextScrolled = window.scrollY > 30;
+      setScrolled((current) => (current === nextScrolled ? current : nextScrolled));
+    };
+
+    const onScroll = () => {
+      if (animationFrame) return;
+      animationFrame = window.requestAnimationFrame(updateScrolledState);
+    };
+
+    updateScrolledState();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   useEffect(() => {
@@ -36,7 +51,7 @@ export default function Navbar() {
           })
           .sort((a, b) => a.distanceToTop - b.distanceToTop)[0];
 
-        if (best?.id) setActive(best.id);
+        if (best?.id) setActive((current) => (current === best.id ? current : best.id));
       },
       {
         root: null,
