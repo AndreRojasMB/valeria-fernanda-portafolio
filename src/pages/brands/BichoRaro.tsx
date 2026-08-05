@@ -8,12 +8,17 @@ import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.
  * Auto-carga TODAS las imágenes dentro de:
  * src/assets/BRANDING AREA/Contenido bicho raro/
  */
-const bichoImages = Object.values(
+const hiddenGalleryImages = ["letrero largo bicho.webp", "post_ig1.webp"];
+
+const bichoImages = Object.entries(
   import.meta.glob<string>(
     "../../assets/BRANDING AREA/Contenido bicho raro/*.webp",
     { eager: true, import: "default" }
   )
-).sort();
+)
+  .filter(([path]) => !hiddenGalleryImages.some((name) => path.endsWith(name)))
+  .sort(([pathA], [pathB]) => (pathA > pathB ? 1 : pathA < pathB ? -1 : 0))
+  .map(([, src]) => src);
 
 export default function BichoRaro() {
   const navigate = useNavigate();

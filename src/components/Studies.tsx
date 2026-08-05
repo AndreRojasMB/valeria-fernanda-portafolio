@@ -1,8 +1,51 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+type Study = {
+  year: string;
+  title: string;
+  subtitle: string;
+  location?: string;
+};
+
+const studies = [
+  {
+    year: "2019 – 2025",
+    title: "Grado de Bachiller en Ciencias de la Comunicación con mención en Publicidad",
+    subtitle: "Estudios Universitarios",
+  },
+  {
+    year: "2025",
+    title: "Brother Lima Escuela de Creativos",
+    subtitle: "Integral intensivo de branding",
+  },
+  {
+    year: "2025",
+    title: "Brother Lima Escuela de Creativos",
+    subtitle: "Dirección de Arte",
+  },
+  {
+    year: "2026",
+    title: "Santander Open Academy",
+    subtitle: "Introducción al comportamiento del consumidor",
+  },
+  {
+    year: "2026",
+    title: "La Calle Escuela Creativa",
+    subtitle: "Planning y Estrategia",
+  },
+  {
+    year: "2026",
+    title: "Pacífico Business School",
+    subtitle: "Behavioral Design",
+    location: "Lima, Perú",
+  },
+] satisfies readonly Study[];
+
 export default function Studies() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="estudios" className="studies section">
       {/* Fondo suave no repetitivo */}
@@ -11,10 +54,10 @@ export default function Studies() {
       {/* Título: entra derecha -> izquierda */}
       <motion.h2
         className="title-best studies-title"
-        initial={{ opacity: 0, x: 140 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.9, ease }}
+        initial={shouldReduceMotion ? false : { opacity: 0, x: 72 }}
+        whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.65, ease }}
       >
         Estudios
       </motion.h2>
@@ -23,12 +66,12 @@ export default function Studies() {
         {/* Rayas: abajo -> arriba simultáneo (después del título) */}
         <motion.div
           className="studies-bars"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.35 }}
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "show"}
+          viewport={{ once: true, amount: 0.25 }}
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.08, delayChildren: 0.25 } },
+            show: { transition: { staggerChildren: 0.05, delayChildren: 0.12 } },
           }}
         >
           {Array.from({ length: 4 }).map((_, i) => (
@@ -41,62 +84,21 @@ export default function Studies() {
                   opacity: 1,
                   y: 0,
                   scaleY: 1,
-                  transition: { duration: 0.7, ease },
+                  transition: { duration: 0.45, ease },
                 },
               }}
             />
           ))}
         </motion.div>
 
-        {/* 01 (arriba -> abajo) */}
-        <StudyItem
-          n="01"
-          title="Grado de Bachiller en Ciencias de la Comunicación con mención en Publicidad"
-          subtitle="Estudios Universitarios"
-          year="2019 – 2025"
-          dir="down"
-          delay={0.55}
-        />
-
-        {/* 02 (abajo -> arriba) */}
-        <StudyItem
-          n="02"
-          title="Brother Lima Escuela de Creativos"
-          subtitle="Integral intensivo de branding"
-          year="2025"
-          dir="up"
-          delay={0.72}
-        />
-
-        {/* 03 (arriba -> abajo) */}
-        <StudyItem
-          n="03"
-          title="Brother Lima Escuela de Creativos"
-          subtitle="Dirección de Arte"
-          year="2025"
-          dir="down"
-          delay={0.89}
-        />
-
-        {/* 04 (abajo -> arriba) */}
-        <StudyItem
-          n="04"
-          title="Santander Open Academy"
-          subtitle="Introducción al comportamiento del consumidor"
-          year="2026"
-          dir="up"
-          delay={1.06}
-        />
-
-        {/* 05 (arriba -> abajo) */}
-        <StudyItem
-          n="05"
-          title="La Calle Escuela Creativa"
-          subtitle="Planning y Estrategia"
-          year="2026"
-          dir="down"
-          delay={1.23}
-        />
+        {studies.map((study, index) => (
+          <StudyItem
+            key={`${study.year}-${study.title}-${study.subtitle}`}
+            n={String(index + 1).padStart(2, "0")}
+            {...study}
+            shouldReduceMotion={shouldReduceMotion}
+          />
+        ))}
       </div>
     </section>
   );
@@ -107,32 +109,33 @@ function StudyItem({
   title,
   subtitle,
   year,
-  dir,
-  delay,
+  location,
+  shouldReduceMotion,
 }: {
   n: string;
   title: string;
   subtitle: string;
   year: string;
-  dir: "up" | "down";
-  delay: number;
+  location?: string;
+  shouldReduceMotion: boolean | null;
 }) {
-  const fromY = dir === "up" ? 60 : -60;
-
   return (
     <motion.article
       className="study-card"
-      initial={{ opacity: 0, y: fromY }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{ duration: 0.85, ease, delay }}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 26 }}
+      whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.18, margin: "0px 0px -6% 0px" }}
+      transition={{ duration: 0.52, ease }}
     >
       <div className="study-left">
         <div className="study-num">{n}</div>
       </div>
 
       <div className="study-right">
-        <div className="study-year text-open">{year}</div>
+        <div className="study-meta">
+          <div className="study-year text-open">{year}</div>
+          {location && <div className="study-location text-open">{location}</div>}
+        </div>
         <div className="study-name text-open">{title}</div>
         <div className="study-sub text-open">{subtitle}</div>
       </div>

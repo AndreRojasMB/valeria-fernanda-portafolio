@@ -15,6 +15,12 @@ html, body, #root {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html, body, #root {
+    scroll-behavior: auto;
+  }
+}
+
 .route-loading {
   min-height: 100dvh;
   background: #0e0e0e;
@@ -168,7 +174,7 @@ html, body, #root {
 ========================= */
 .studies {
   min-height: 100vh;
-  padding: 120px 10vw 120px;
+  padding: 96px 10vw 72px;
   background: #0e0e0e;
   position: relative;
 }
@@ -186,29 +192,29 @@ html, body, #root {
 
 .studies-title {
   position: relative;
-  font-size: clamp(56px, 6vw, 96px);
+  font-size: clamp(50px, 5.4vw, 84px);
   letter-spacing: 0.5px;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 }
 
 .studies-grid {
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 18px;
+  gap: 12px;
   max-width: 980px;
 }
 
 .studies-bars {
   display: flex;
   gap: 14px;
-  margin: 10px 0 10px;
+  margin: 4px 0 6px;
   align-items: flex-end;
 }
 
 .studies-bars .bar {
-  width: 46px;
-  height: 6px;
+  width: 42px;
+  height: 5px;
   background: #fff;
   border-radius: 999px;
   transform-origin: bottom;
@@ -217,18 +223,18 @@ html, body, #root {
 
 .study-card {
   display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 18px;
-  padding: 18px 18px;
-  border-radius: 18px;
+  grid-template-columns: 58px 1fr;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: 16px;
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
   backdrop-filter: blur(10px);
 }
 
 .study-num {
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
   border-radius: 999px;
   display: grid;
   place-items: center;
@@ -238,33 +244,62 @@ html, body, #root {
   background: var(--pink);
 }
 
+.study-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin-bottom: 2px;
+}
+
 .study-year {
   opacity: .9;
   font-weight: 700;
-  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.study-location {
+  opacity: .72;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.35;
 }
 
 .study-name {
   font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1.25;
+  margin-bottom: 3px;
 }
 
 .study-sub {
   opacity: .85;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
 /* responsive */
 @media (max-width: 520px) {
   .studies {
-    padding: 110px 7vw 110px;
+    padding: 96px 6vw 80px;
+  }
+  .studies-title {
+    margin-bottom: 20px;
   }
   .study-card {
-    grid-template-columns: 58px 1fr;
+    grid-template-columns: 48px 1fr;
+    gap: 12px;
+    padding: 12px;
+  }
+  .study-num {
+    width: 42px;
+    height: 42px;
   }
   .studies-bars .bar {
-    width: 34px;
+    width: 30px;
   }
 }
 
