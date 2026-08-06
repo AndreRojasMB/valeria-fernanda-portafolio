@@ -4,7 +4,6 @@ import LanguageToggle from "../../components/LanguageToggle";
 import { useLanguage } from "../../i18n/useLanguage";
 import bichoLogo from "../../assets/BRANDING AREA/Contenido bicho raro/Logo.webp";
 import bichoCover from "../../assets/BRANDING AREA/Contenido bicho raro/portada.webp";
-import bichoPostEn from "../../assets/localized/en/bicho-post.webp";
 import bichoPosterEn from "../../assets/localized/en/bicho-poster.webp";
 
 const hiddenGalleryImages = ["letrero largo bicho.webp", "post_ig1.webp", "post_ig2.webp"];
@@ -13,7 +12,6 @@ const bichoImages = Object.entries(import.meta.glob<string>("../../assets/BRANDI
   .sort(([pathA], [pathB]) => pathA.localeCompare(pathB));
 
 const englishImageFor = (path: string, original: string) => {
-  if (path.endsWith("post_ig2.webp")) return bichoPostEn;
   if (path.endsWith("pozter.webp")) return bichoPosterEn;
   return original;
 };
